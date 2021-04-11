@@ -5,6 +5,26 @@
 #include <string>
 using namespace std;
 
+/*
+* 若对性能不敏感，则Meyers实现单例（懒汉模式）
+* 其自动线程安全，简单易懂。但对象保存在静态数据区，会有点不习惯
+* meyers singlton
+* class MySingleton{
+* public:
+*	static MySingleton& getInstance(){
+*		static MySington instance;
+*		return instance;
+*	}
+* private:
+*	MySingleton() = default;
+*	~MySingleton() = default;
+*	MySingleton(const MySingleton&) = delete;
+*	MySingleton operator=(const MySingleton&) = delete;
+* };
+*/
+
+
+
 class Singleton {
 private:
 	static Singleton* m_pObject;
@@ -14,20 +34,21 @@ private:
 	}
 	
 public:
-
-	static Singleton* CreateObject() {
-		if (m_pObject == nullptr) {
-			m_pObject = new Singleton();//指针不为空，则创建这个对象
-		}
-		return new Singleton();
+	//Singleton(Singleton& s) = delete;
+	Singleton* operator=(Singleton& s) = delete;
+	static Singleton& CreateObject() {
+		static Singleton obj;
+		return obj;
 	}
 
 	~Singleton() {
 		cout << "Singleton_析构" << endl;
 	}
 };
-Singleton* Singleton::m_pObject = nullptr;
+//Singleton* Singleton::m_pObject = nullptr;
 
 void singleton() {
-	Singleton* pObj = Singleton::CreateObject();
+	Singleton& pObj1 = Singleton::CreateObject();
+	Singleton& pObj2 = Singleton::CreateObject();
+	Singleton s = Singleton::CreateObject();
 }
