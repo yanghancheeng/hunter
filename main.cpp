@@ -1,16 +1,14 @@
 #include <iostream>
 #include <algorithm>
-#include <memory>
-#include <queue>
-#include <stack>
+#include <vector>
 #include <string>
-#include <opencv2/opencv.hpp>
+//#include "compVer.hpp"
 #include "leetcode.hpp"
-#include "cv.hpp"
-
+#include "singleton.hpp"
 
 
 int main(int argc, char** argv) {
-	cv();
+	//compVer();
+	singleton();
 	return true;
 }

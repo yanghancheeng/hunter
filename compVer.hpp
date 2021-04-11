@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
 #include <opencv2/opencv.hpp>
-
 using namespace std;
 using namespace cv;
+//º¯ÊıÉùÃ÷
+double filter_aver(Mat src);
+Mat filter(Mat image, Size size);
 
-void cv() {
+void compVer() {
 
 	Mat Img1 = imread("1.jpg");
 	int height = Img1.rows;
